@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block 'content' %}
+<center>
+	{% if myAnswer %}
+<div class="alert alert-{{color}} alert-dismissible fade show" role="alert">
+  {{ myAnswer }}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endif %}
+<br>
+	<h1><img src="static/images/{{ num_1 }}.png"> - <img src="static/images/{{ num_2 }}.png"></h1>
+	
+
+
+<br>
+<form action="{% url 'Subraction' %}" method="POST">
+
+	{% csrf_token %}
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Answer here" name="answer">
+    <input type="hidden" name="old_num_1" value="{{ num_1 }}">
+    <input type="hidden" name="old_num_2" value="{{ num_2 }}">
+  </div>
+  <button type="submit" class="btn btn-secondary">Submit</button>
+</form>
+
+</center>
+{% endblock %}
